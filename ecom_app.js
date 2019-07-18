@@ -5,13 +5,14 @@ var exphbs  = require('express-handlebars');
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
-const port = 3000;
+const port = 3003;
 
 
 app.use(express.static('public'));
 
 
 app.get('/', function(req, res) {
+      console.log(req.header['x-real-ip']);
       res.render('home', {'items':[{'name': "Pizza Socks", 'description': "Socks with pizza on them"}, {'name': "Puppies Socks", 'description': "Socks with puppies on them"}]});
     }
 );
