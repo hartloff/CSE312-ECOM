@@ -1,35 +1,4 @@
 <div id="items">
 
 
-    {{#each items }}
-
-        <hr/>
-
-        <h1>{{ this.name }}</h1>
-
-        <p>
-            {{ this.description }}
-        </p>
-
-        {{#each this.reviews}}
-            {{this.rating}}: {{this.review}}<br/>
-        {{/each}}
-
-        <button>I Need These!</button>
-
-
-        <form method="post" action="/addReview">
-            <input type="text" name="id" value="{{ this.id }}" hidden/>
-            <input type="radio" name="rating" value="1"/> 1<br/>
-            <input type="radio" name="rating" value="2"/> 2<br/>
-            <input type="radio" name="rating" value="3"/> 3<br/>
-            <input type="radio" name="rating" value="4"/> 4<br/>
-            <input type="radio" name="rating" value="5"/> 5<br/>
-            <input type="text" name="review" width="100"/>
-            <input type="submit">
-        </form>
-
-    {{/each}}
-
-
 </div>

@@ -41,6 +41,10 @@ app.get('/', function (req, res) {
         res.render('home', {'items': Object.values(items)});
     }
 );
+app.get('/allItems', function (req, res) {
+        res.send(Object.values(items));
+    }
+);
 
 
 app.post('/addReview', function (req, res) {
@@ -50,9 +54,9 @@ app.post('/addReview', function (req, res) {
 
         items[itemId].reviews.push({'rating': rating, 'review': review});
 
-        // res.send("Thank you for your review!");
+        res.send("Thank you for your review!");
 
-        res.render('home', {'items': Object.values(items)});
+        // res.render('home', {'items': Object.values(items)});
     }
 );
 
