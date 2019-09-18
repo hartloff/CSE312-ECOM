@@ -7,18 +7,13 @@
 <div id="stage">
     <h1 class="with-button">Login Required</h1>
 
-    <form name="f" action="/idp/profile/SAML2/Redirect/SSO?execution=e1s1" method="post" autocomplete="off">
+    <form name="f" action="/login" method="post" autocomplete="off">
 
         <div class="fields">
             <label for="login" id="username-label">
                 <span class="text">UBITName:</span>
                 <script>
-                    // only turn on autofocus in browsers known to not have placeholder-hiding or keyboard-showing issues
-                    if(navigator.userAgent.match(/chrome|safari|firefox/i) && !navigator.userAgent.match(/mobile/i)) {
                         document.write('<input autocapitalize="off" autocomplete="off" autocorrect="off" id="login" name="j_username" placeholder="UBITName" spellcheck="false" type="text" autofocus required><i class="icon-user"></i>');
-                    } else {
-                        document.write('<input autocapitalize="off" autocomplete="off" autocorrect="off" id="login" name="j_username" placeholder="UBITName" spellcheck="false" type="text" required><i class="icon-user"></i>');
-                    }
                 </script><input autocapitalize="off" autocomplete="off" autocorrect="off" id="login" name="j_username" placeholder="UBITName" spellcheck="false" type="text" autofocus="" required=""><i class="icon-user"></i>
                 <noscript>
                     <input autocapitalize="off" autocomplete="off" autocorrect="off" id="login" name="j_username" placeholder="UBITName" spellcheck="false" type="text" required><i class="icon-user"></i>
@@ -26,7 +21,7 @@
             </label>
             <label for="password" id="password-label">
                 <span class="text">Password:</span>
-                <input autocapitalize="off" autocomplete="off" autocorrect="off" id="password" name="j_password" placeholder="Password" spellcheck="false" type="password" value="" required=""><i class="icon-lock"></i>
+                <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Password" spellcheck="false" type="password" value="" required=""><i class="icon-lock"></i>
             </label>
         </div>
         <input id="login-button" type="submit" value="Log In" name="_eventId_proceed" onclick="this.childNodes[0].nodeValue='Logging in, please wait...'">
