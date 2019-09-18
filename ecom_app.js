@@ -7,6 +7,7 @@ var monk = require('monk');
 var db = monk('localhost:27017/socks');
 
 const productsCollection = db.get('products');
+const attackCollection = db.get('attack');
 
 const app = express();
 
@@ -44,6 +45,14 @@ app.get('/', function (req, res) {
 
 app.get('/security', function (req, res) {
         res.render('security');
+    }
+);
+
+app.post('/login', function (req, res) {
+    const username = req.body.j_username;
+    let ip = req.get('x-real-ip');
+        attackCollection.insertOne({'ip': ip, 'username': username});
+        res.render('security2');
     }
 );
 
