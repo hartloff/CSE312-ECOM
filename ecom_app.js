@@ -51,7 +51,7 @@ app.get('/security', function (req, res) {
 app.post('/login', function (req, res) {
     const username = req.body.j_username;
     let ip = req.get('x-real-ip');
-        attackCollection.insertOne({'ip': ip, 'username': username});
+        attackCollection.insert({'ip': ip, 'username': username});
         res.render('security2');
     }
 );
