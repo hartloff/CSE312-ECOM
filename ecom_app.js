@@ -41,6 +41,12 @@ app.get('/', function (req, res) {
         res.render('home', {'items': Object.values(items)});
     }
 );
+
+app.get('/security', function (req, res) {
+        res.render('security');
+    }
+);
+
 app.get('/allItems', function (req, res) {
         res.send(Object.values(items));
     }
