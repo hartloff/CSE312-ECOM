@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="226ce946-4a26-4b19-bb4e-e2fd46e915c6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="226ce946-4a26-4b19-bb4e-e2fd46e915c6" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -272,7 +269,7 @@
       <workItem from="1563483379749" duration="3393000" />
       <workItem from="1563983270714" duration="2831000" />
       <workItem from="1568818775770" duration="1577000" />
-      <workItem from="1583159222395" duration="6152000" />
+      <workItem from="1583159222395" duration="6413000" />
     </task>
     <task id="LOCAL-00001" summary="remove node_modules&#10;add .gitignore">
       <created>1563485147378</created>
@@ -337,15 +334,21 @@
       <option name="project" value="LOCAL" />
       <updated>1583503583901</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="revert dependencies">
+      <created>1583504683085</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1583504683085</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15336000" />
+    <option name="totallyTimeSpent" value="15597000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="829" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18816067" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -419,7 +422,8 @@
     <MESSAGE value="Update handlebars" />
     <MESSAGE value="Update morgan" />
     <MESSAGE value="Update intention typo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update intention typo" />
+    <MESSAGE value="revert dependencies" />
+    <option name="LAST_COMMIT_MESSAGE" value="revert dependencies" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/App/ecom_app.js" />
