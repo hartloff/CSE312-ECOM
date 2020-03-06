@@ -21,4 +21,4 @@ RUN npm install
 EXPOSE 8000
 
 # Run the app
-CMD ["node", "ecom_app.py"]
+CMD ["node", "ecom_app.js"]
