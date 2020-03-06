@@ -2,12 +2,12 @@ const express = require('express');
 var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/socks');
+// var mongo = require('mongodb');
+// var monk = require('monk');
+// var db = monk('localhost:27017/socks');
 
-const productsCollection = db.get('products');
-const attackCollection = db.get('attack');
+// const productsCollection = db.get('products');
+// const attackCollection = db.get('attack');
 
 const app = express();
 
