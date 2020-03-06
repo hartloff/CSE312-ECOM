@@ -17,7 +17,7 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-const port = 3003;
+const port = 8000;
 
 let items = {
     'pizza_socks': {
@@ -62,6 +62,13 @@ app.get('/allItems', function (req, res) {
 );
 
 
+app.post('/form-path', function (req, res) {
+        console.log(req.body);
+        res.send("thank you!")
+    }
+);
+
+
 app.post('/addReview', function (req, res) {
         const rating = req.body.rating;
         const review = req.body.review;
@@ -75,11 +82,6 @@ app.post('/addReview', function (req, res) {
     }
 );
 
-
-// TODO [in lecture]: Add form to add reviews (no database yet) (start with page reload)
-
-// TODO [in lecture]: Server item data as an API end point
-// TODO [in lecture]: Polling to update reviews
 
 
 app.use(function (req, res, next) {
