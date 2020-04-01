@@ -3,7 +3,8 @@
 function initialize() {
     updateItems();
     setInterval(function () {
-        updateItems()
+        updateItems();
+        updateItems2();
     }, 10000)
 }
 
@@ -16,6 +17,19 @@ function updateItems() {
         }
     };
     AJAXRequest.open('GET', '/allItems');
+    AJAXRequest.send();
+}
+
+
+function updateItems2() {
+    let AJAXRequest = new XMLHttpRequest();
+
+    AJAXRequest.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            document.getElementById("stuff").innerHTML = this.response;
+        }
+    };
+    AJAXRequest.open('GET', '/stuff');
     AJAXRequest.send();
 }
 
