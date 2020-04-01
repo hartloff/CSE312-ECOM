@@ -1,94 +1,61 @@
-// TODO [in class]: Setup AJAX calls to request and render data
+
+let socket = undefined;
+let username = generateRandomId();
 
 function initialize() {
-    updateItems();
-    setInterval(function () {
-        updateItems();
-        updateItems2();
-    }, 1000)
+    loadHistory();
+
+    socket = io.connect({transports: ['websocket']});
+    socket.on('message', renderMessage);
+
+    document.addEventListener("keypress", function(event){
+        if(event.keyCode === 13){
+            sendMessage();
+        }
+    })
 }
 
-function updateItems() {
-    let AJAXRequest = new XMLHttpRequest();
-
-    AJAXRequest.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            document.getElementById("items").innerHTML = toHTML(this.response);
-        }
-    };
-    AJAXRequest.open('GET', '/allItems');
-    AJAXRequest.send();
-}
-
-
-function updateItems2() {
-    let AJAXRequest = new XMLHttpRequest();
-
-    AJAXRequest.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            document.getElementById("stuff").innerHTML = this.response;
-        }
-    };
-    AJAXRequest.open('GET', '/stuff');
-    AJAXRequest.send();
-}
-
-
-function toHTML(rawResponse) {
-    const data = JSON.parse(rawResponse);
-
-    let html = "";
-
-    for (const item of data) {
-        html += "<hr/><h1>";
-        html += item.name;
-        html += "</h1><p>";
-        html += item.description;
-        html += "</p>";
-        for (const review of item.reviews) {
-            html += review.rating + ": " + review.review + "<br/>";
-        }
-        html += "<button>I Need These!</button><br/><br/>";
-
-        // html += '<form method="post" action="/addReview">';
-        // html += '<input type="text" name="id" value="' + item.id + '" hidden/>';
-        for (let i = 1; i <= 5; i++) {
-            html += '<input type="radio" name="rating_' + item.id + '" value="' + i + '"/> ' + i + '<br/>'
-        }
-        html += '<input type="text" id="review_' + item.id + '" width="100"/>';
-        html += '<button onclick="submitReview(\'' + item.id + '\')">Submit</button>';
-        // html += '<input type="submit">';
-        // html += '</form>';
+function sendMessage() {
+    const chatBox = document.getElementById("chatInput");
+    const message = chatBox.value;
+    chatBox.value = "";
+    if(message !== "") {
+        socket.emit("message", JSON.stringify({'username': username, 'message': message}))
     }
 
-    return html;
+    chatBox.focus();
 }
 
-function submitReview(itemId) {
-    const radioButtons = document.getElementsByName("rating_" + itemId);
-    let rating = -1;
-    for (const button of radioButtons) {
-        if (button.checked) {
-            rating = button.value;
-        }
-    }
 
-    const review = document.getElementById("review_" + itemId).value;
+function renderMessage(rawMessage) {
+    let chat = document.getElementById('chat');
 
-    if (rating !== -1) {
-        sendRating(itemId, rating, review);
-    }
+    const theMessage = JSON.parse(rawMessage);
+
+    chat.innerHTML = "<b>" + theMessage['username'] + "</b>: " + theMessage["message"] + "<br/>" + chat.innerHTML
 }
 
-function sendRating(itemId, rating, review) {
-    let AJAXRequest = new XMLHttpRequest();
-
-    AJAXRequest.onreadystatechange = function () {
+function loadHistory() {
+    let ajaxRequest = new XMLHttpRequest();
+    ajaxRequest.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            // document.getElementById("items").innerHTML = toHTML(this.response);
+            document.getElementById("chat").innerHTML = renderAllMessage(this.responseText);
         }
     };
-    AJAXRequest.open('POST', '/addReview');
-    AJAXRequest.setRequestHeader("Content-Type", "application/json");
-    AJAXRequest.send(JSON.stringify({id: itemId, rating: rating, review: review}));
+    ajaxRequest.open("GET", "chat-history", true);
+    ajaxRequest.send();
+}
+
+
+function renderAllMessage(rawMessages) {
+    let historyHTML = "";
+    let history = JSON.parse(rawMessages);
+    for (const message of history) {
+        historyHTML = "<b>" + message['username'] + "</b>: " + message["message"] + "<br/>" + historyHTML;
+    }
+    return historyHTML;
+}
+
+function generateRandomId() {
+    return "anon_" + Math.round(Math.random()*1000).toString()
 }

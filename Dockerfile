@@ -6,11 +6,6 @@ FROM node:13
 ENV HOME /root
 WORKDIR /root
 
-# Install Node
-#RUN apt-get update --fix-missing
-#RUN apt-get install -y nodejs
-#RUN apt-get install -y npm
-
 # Copy all app files into the image
 COPY . .
 
@@ -24,4 +19,4 @@ ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait
 RUN chmod +x /wait
 
 # Run the app
-CMD /wait && node ecom_app.js
+CMD /wait && node chat_app.js
