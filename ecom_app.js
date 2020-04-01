@@ -3,15 +3,21 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 
 const mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/socks');
+const monk = require('monk');
 
-// const mongoClient = new mongo.MongoClient('mongodb://localhost:27017/socks');
-//
-// mongoClient.connect()
+let db = monk('mongo:27017/socks');
+let productsCollection = db.get('products');
+let attackCollection = db.get('attack');
 
-const productsCollection = db.get('products');
-const attackCollection = db.get('attack');
+if (!db) {
+	console.log("DB ERROR");
+}
+
+function initDB() {
+	db = monk('localhost:27017/socks');
+	productsCollection = db.get('products');
+	attackCollection = db.get('attack');
+}
 
 const app = express();
 
@@ -70,11 +76,19 @@ app.get('/allItems', function (req, res) {
 app.get('/stuff', function (req, res) {
 		// res.send(Object.values(items));
 	console.log("ggg");
+	// initDB();
+
+	// db.catch(function(err) {
+	// 	console.log(err);
+	// 	initDB();
+	// });
+
+		// console.log(db);
 		productsCollection.find({}, {}, function (err, data) {
-			if(err){
+			if (err) {
 				console.log(err);
 				res.send("error");
-			}else {
+			} else {
 				console.log(data);
 				res.send(data);
 			}

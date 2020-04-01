@@ -1,6 +1,20 @@
-version: '3.1'
+version: '3.3'
 services:
   mongo:
     image: mongo:4.2.5
     ports:
-      - ''
+      - '27017:27017'
+    expose:
+    - "27017"
+#    healthcheck:
+#      test: ['CMD', 'curl', 'http://localhost:27017']
+  app:
+    build: .
+#    depends_on:
+#      - mongo
+    links:
+      - mongo
+    environment:
+      WAIT_HOSTS: mongo:27017
+    ports:
+      - '7800:8000'

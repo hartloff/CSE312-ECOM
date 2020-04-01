@@ -5,7 +5,7 @@ function initialize() {
     setInterval(function () {
         updateItems();
         updateItems2();
-    }, 10000)
+    }, 1000)
 }
 
 function updateItems() {
