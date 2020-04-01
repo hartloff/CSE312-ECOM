@@ -5,19 +5,10 @@ const bodyParser = require('body-parser');
 const mongo = require('mongodb');
 const monk = require('monk');
 
-let db = monk('mongo:27017/socks');
+let db = monk('mongo:27015/socks');
 let productsCollection = db.get('products');
 let attackCollection = db.get('attack');
 
-if (!db) {
-	console.log("DB ERROR");
-}
-
-function initDB() {
-	db = monk('localhost:27017/socks');
-	productsCollection = db.get('products');
-	attackCollection = db.get('attack');
-}
 
 const app = express();
 

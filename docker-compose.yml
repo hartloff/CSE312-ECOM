@@ -3,9 +3,9 @@ services:
   mongo:
     image: mongo:4.2.5
     ports:
-      - '27017:27017'
+      - '27015:27017'
     expose:
-    - "27017"
+    - "27015"
 #    healthcheck:
 #      test: ['CMD', 'curl', 'http://localhost:27017']
   app:
