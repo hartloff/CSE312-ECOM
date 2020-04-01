@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongo = require('mongodb');
 const monk = require('monk');
 
-let db = monk('mongo:27015/socks');
+let db = monk('0.0.0.0:27015/socks');
 let productsCollection = db.get('products');
 let attackCollection = db.get('attack');
 

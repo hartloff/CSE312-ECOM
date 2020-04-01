@@ -15,6 +15,6 @@ services:
     links:
       - mongo
     environment:
-      WAIT_HOSTS: mongo:27015
+      WAIT_HOSTS: mongo:27017
     ports:
       - '8080:8000'
